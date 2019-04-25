@@ -1,0 +1,32 @@
+<html>
+
+
+   <head>
+       <script>
+          document.addEventListener("DOMContentLoaded", ready);
+
+          function ready(){
+            console.log("slave intialized");
+
+            window.addEventListener('message', function(event) {
+               console.log("received");
+               var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+               // if (origin !== /*the container's domain url*/)
+               //    return;
+
+               if (typeof event.data == 'object' && event.data.call=='sendValue') {
+                  // Do something with event.data.value;
+                  document.getElementById("data").textContent = "received:" + event.data.value;
+               }
+            }, false);
+          }
+
+       </script>
+   </head>
+
+   <body>
+      <div id="header">authing</div>
+      <div id="data">zero</div>
+   </body>
+
+</html>

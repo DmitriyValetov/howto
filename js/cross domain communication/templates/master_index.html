@@ -1,0 +1,26 @@
+<p><b>1- (inbrowser, not in apex)</b></p>
+
+<!DOCTYPE HTML>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Тег IFRAME</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", ready);
+
+            function ready(){
+                var frame = document.getElementById("theIframe");
+                frame.onload = function(){
+                    frame.contentWindow.postMessage({call:'sendValue', value: "master_msg"}, '*');
+                    console.log("sended");
+                }
+            }
+        </script>
+    </head>
+
+    <body>  
+        <iframe height="600px" id="theIframe" name="theIframe" src="http://localhost:5001/" width="100%"></iframe>
+    </body>
+
+</html>
