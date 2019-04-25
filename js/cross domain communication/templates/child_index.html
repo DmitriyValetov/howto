@@ -6,10 +6,10 @@
           document.addEventListener("DOMContentLoaded", ready);
 
           function ready(){
-            console.log("slave intialized");
+            console.log("child intialized");
 
             window.addEventListener('message', function(event) {
-               console.log("received");
+               console.log("child received msg from parent");
                var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
                // if (origin !== /*the container's domain url*/)
                //    return;
@@ -17,6 +17,9 @@
                if (typeof event.data == 'object' && event.data.call=='sendValue') {
                   // Do something with event.data.value;
                   document.getElementById("data").textContent = "received:" + event.data.value;
+
+                  parent.postMessage("I hear you, daddy", "*");
+                  console.log("child answering to parent");
                }
             }, false);
           }

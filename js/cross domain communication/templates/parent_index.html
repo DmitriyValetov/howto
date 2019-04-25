@@ -1,0 +1,32 @@
+<p><b>Testing communicating with iframe document</b></p>
+
+<!DOCTYPE HTML>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Тег IFRAME</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", ready);
+
+            function ready(){
+                window.addEventListener('message', function(event) {
+                    console.log("parent received msg from child");
+                    document.getElementById("data").textContent = "received from child:" + event.data;
+                }, false);
+
+                var frame = document.getElementById("theIframe");
+                frame.onload = function(){
+                    frame.contentWindow.postMessage({call:'sendValue', value: "dinner is ready"}, '*');
+                    console.log("parent sending msg to child");
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        From child: <div id="data">---</div>
+        <iframe height="600px" id="theIframe" name="theIframe" src="http://localhost:5001/" width="100%"></iframe>
+    </body>
+
+</html>
