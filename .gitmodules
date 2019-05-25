@@ -1,3 +1,6 @@
 [submodule "js/websocketUse"]
 	path = js/websocketUse
 	url = https://github.com/DmitriyValetov/websocketUse.git
+[submodule "python/event-loop"]
+	path = python/event-loop
+	url = https://github.com/dmitriyvaletov/event-loop.git
